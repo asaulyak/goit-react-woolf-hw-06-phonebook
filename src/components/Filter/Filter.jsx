@@ -1,7 +1,10 @@
 import css from './Filter.module.css';
+import { useDispatch } from 'react-redux';
+import { setFilter } from '../../redux/filterSlice';
 
-export function Filter({ onSearch }) {
-  const handleSearch = event => onSearch(event.target.value);
+export function Filter() {
+  const dispatch = useDispatch();
+  const handleSearch = event => dispatch(setFilter(event.target.value));
 
   return (
     <div className={css.filter}>

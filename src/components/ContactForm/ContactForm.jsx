@@ -1,19 +1,22 @@
 import css from './ContactForm.module.css';
-import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/contactsSlice';
 
-export const ContactForm = ({ onAddContact }) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = event => {
     event.preventDefault();
 
     const contact = {
-      id: nanoid(),
       name: event.target.elements.name.value,
       number: event.target.elements.number.value,
     };
 
     event.target.reset();
 
-    onAddContact(contact);
+
+    dispatch(addContact(contact));
   };
 
   return (
